@@ -198,7 +198,6 @@ def collate_on_page(N_ppl):
             else:
                 y0 = i * (h+dx_h)
             ax_grid.plot([0, 1], [y0, y0], '-', color='0.9', lw=3)
-            print(i, y0)
         ax_grid.set_xlim([0,1])
         ax_grid.set_ylim([0,1])
         ax_grid.axis('off')
@@ -215,4 +214,4 @@ def collate_on_page(N_ppl):
 for idx_person in range(N_ppl):
     make_namebadge(idx_person)
 
-collate_on_page(4)
+collate_on_page(N_ppl)
