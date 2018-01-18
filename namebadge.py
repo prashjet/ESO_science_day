@@ -12,31 +12,29 @@ xl['Name'] = xl.index
 N_ppl = len(xl)
 xl = xl.set_index(np.arange(N_ppl))
 
-outdir = 'badges/'
-
 def get_icon(idx_cat):
     if idx_cat==0:
-        iconfile = 'icons/planets.png'
+        iconfile = 'data/icons/planets.png'
     elif idx_cat==1:
-        iconfile = 'icons/stellar_evo.png'
+        iconfile = 'data/icons/stellar_evo.png'
     elif idx_cat==2:
-        iconfile = 'icons/stellar_pops.png'
+        iconfile = 'data/icons/stellar_pops.png'
     elif idx_cat==3:
-        iconfile = 'icons/galaxy.png'
+        iconfile = 'data/icons/galaxy.png'
     elif idx_cat==4:
-        iconfile = 'icons/cosmology.png'
+        iconfile = 'data/icons/cosmology.png'
     elif idx_cat==5:
-        iconfile = 'icons/spectroscopy.png'
+        iconfile = 'data/icons/spectroscopy.png'
     elif idx_cat==6:
-        iconfile = 'icons/photo.png'
+        iconfile = 'data/icons/photo.png'
     elif idx_cat==7:
-        iconfile = 'icons/theory.png'
+        iconfile = 'data/icons/theory.png'
     elif idx_cat==8:
-        iconfile = 'icons/xray.png'
+        iconfile = 'data/icons/xray.png'
     elif idx_cat==9:
-        iconfile = 'icons/optical.png'
+        iconfile = 'data/icons/optical.png'
     elif idx_cat==10:
-        iconfile = 'icons/radio.png'
+        iconfile = 'data/icons/radio.png'
     else:
         raise ValueError('Unkown category index')
     icon = Image.open(iconfile)
@@ -63,7 +61,7 @@ def make_namebadge(idx_person):
     fig = plt.figure(figsize=(width/mm2inch, height/mm2inch), dpi=500)
     renderer = fig.canvas.get_renderer()
 
-    eso_logo = Image.open('icons/eso-logo-p3005.jpg')
+    eso_logo = Image.open('data/icons/eso-logo-p3005.jpg')
     x0 = border_w
     w0 = eso_w
     h0 = eso_h
@@ -72,7 +70,7 @@ def make_namebadge(idx_person):
     ax_eso.imshow(eso_logo)
     ax_eso.axis('off')
 
-    flags = Image.open('icons/eso-flags-blackframes.png')
+    flags = Image.open('data/icons/eso-flags-blackframes.png')
     w0 = flag_w
     x0 = 1. - flag_w - border_w
     y0 = border_h
@@ -113,7 +111,7 @@ def make_namebadge(idx_person):
     )
 
     if xl['Name'][idx_person]=='Maria Giulia Ubeira Gabellini':
-        size = 17.
+        size = 16.5
     else:
         size = 18.5
 
@@ -145,8 +143,54 @@ def make_namebadge(idx_person):
         ax_icon.axis('off')
         x0 += (icon_w+icon_dw)
 
-    fig.savefig(outdir+'namebadge_{i}.png'.format(i=idx_person))
+    for 
+    fig.savefig('output/badge_indiv/namebadge_{0:03d}.png'.format(idx_person))
     plt.close()
+
+    return 0
+
+def collate_on_page(N_ppl):
+
+    n_per_page = 4
+    n_pages = int(np.ceil(N_ppl/n_per_page))
+
+    dx_w = 1.
+    dx_h = 1.
+
+    page_width = 2 * width + dx_w
+    page_height = n_per_page * height + (n_per_page-1) * dx_h
+    pagesize = (page_width/mm2inch, page_height/mm2inch)
+
+    # transform to units of page fraction
+    w = width /page_width
+    h = height /page_height
+    dx_w = dx_w /page_width
+    dx_h = dx_h /page_height
+
+    for i_page in range(n_pages):
+
+        fig = plt.figure(figsize=pagesize, dpi=500)
+
+        for i_badge in range(n_per_page):
+
+            idx_ppl = n_per_page*i_page + i_badge
+            bfile = 'output/badge_indiv/namebadge_{0:03d}.png'.format(idx_ppl)
+
+            try:
+                badge = Image.open(bfile)
+            except:
+                break
+
+            y0 = i_badge * (h+dx_h)
+            for x0 in [0., w+dx_w]:
+
+                ax = fig.add_axes([x0, y0, w, h])
+                ax.imshow(badge)
+                ax.axis('off')
+
+        ax = fig.add_axes([0, 0, 1, 1], zorder=-10)
+        fig.savefig('output/badge_page/badges_{0:03d}.pdf'.format(i_page))
+        plt.close()
 
     return 0
 
@@ -154,8 +198,7 @@ def make_namebadge(idx_person):
 # Main
 ####################################################
 
-for idx_person in range(N_ppl):
-    make_namebadge(idx_person)
+# for idx_person in range(N_ppl):
+#     make_namebadge(idx_person)
 
-
-####################################################
+collate_on_page(4)
