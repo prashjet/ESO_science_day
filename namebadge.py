@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 import pandas as pd
-xl = pd.read_excel('doodle.xls', header=3, skip_footer=1)
+xl = pd.read_excel('data/doodle.xls', header=3, skip_footer=1)
 xl['Name'] = xl.index
 N_ppl = len(xl)
 xl = xl.set_index(np.arange(N_ppl))
@@ -110,7 +110,7 @@ def make_namebadge(idx_person):
             transform=fig.transFigure
     )
 
-    if xl['Name'][idx_person]=='Maria Giulia Ubeira Gabellini':
+    if len(xl['Name'][idx_person])>25:
         size = 16.5
     else:
         size = 18.5
@@ -143,7 +143,6 @@ def make_namebadge(idx_person):
         ax_icon.axis('off')
         x0 += (icon_w+icon_dw)
 
-    for 
     fig.savefig('output/badge_indiv/namebadge_{0:03d}.png'.format(idx_person))
     plt.close()
 
@@ -158,7 +157,7 @@ def collate_on_page(N_ppl):
     dx_h = 1.
 
     page_width = 2 * width + dx_w
-    page_height = n_per_page * height + (n_per_page-1) * dx_h
+    page_height = n_per_page * (height + dx_h)
     pagesize = (page_width/mm2inch, page_height/mm2inch)
 
     # transform to units of page fraction
@@ -181,14 +180,29 @@ def collate_on_page(N_ppl):
             except:
                 break
 
-            y0 = i_badge * (h+dx_h)
+            y0 = dx_h/2. + i_badge * (h+dx_h)
             for x0 in [0., w+dx_w]:
 
                 ax = fig.add_axes([x0, y0, w, h])
                 ax.imshow(badge)
                 ax.axis('off')
 
-        ax = fig.add_axes([0, 0, 1, 1], zorder=-10)
+        # add gridlines
+        ax_grid = fig.add_axes([0, 0, 1, 1])
+        ax_grid.plot([0.5, 0.5], [0, 1], '-', color='0.9', lw=3)
+        for i in range(n_per_page+1):
+            if i==0:
+                y0 = 0.01
+            if i==n_per_page:
+                y0 = 0.999
+            else:
+                y0 = i * (h+dx_h)
+            ax_grid.plot([0, 1], [y0, y0], '-', color='0.9', lw=3)
+            print(i, y0)
+        ax_grid.set_xlim([0,1])
+        ax_grid.set_ylim([0,1])
+        ax_grid.axis('off')
+
         fig.savefig('output/badge_page/badges_{0:03d}.pdf'.format(i_page))
         plt.close()
 
@@ -198,7 +212,7 @@ def collate_on_page(N_ppl):
 # Main
 ####################################################
 
-# for idx_person in range(N_ppl):
-#     make_namebadge(idx_person)
+for idx_person in range(N_ppl):
+    make_namebadge(idx_person)
 
 collate_on_page(4)
