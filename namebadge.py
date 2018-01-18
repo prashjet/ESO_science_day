@@ -9,6 +9,7 @@ from PIL import Image
 import pandas as pd
 xl = pd.read_excel('data/doodle.xls', header=3, skip_footer=1)
 xl['Name'] = xl.index
+xl = xl.sort_values(['Name'])
 N_ppl = len(xl)
 xl = xl.set_index(np.arange(N_ppl))
 
