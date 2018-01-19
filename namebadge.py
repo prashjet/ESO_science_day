@@ -2,6 +2,14 @@ import numpy as np
 
 import matplotlib
 matplotlib.use('Qt5Agg')
+
+import matplotlib.font_manager as font_manager
+font_dirs = ['/Library/Fonts']
+font_files = font_manager.findSystemFonts(fontpaths=font_dirs)
+font_list = font_manager.createFontList(font_files)
+font_manager.fontManager.ttflist.extend(font_list)
+matplotlib.rcParams['font.family'] = 'Helvetica Neue LT Com'
+
 import matplotlib.pyplot as plt
 
 from PIL import Image
@@ -42,7 +50,7 @@ def get_icon(idx_cat):
     return icon
 
 # dimensions im mm
-width = 89.75
+width = 90.
 height = 60.
 
 # dimensions in frac of width/height
@@ -154,8 +162,8 @@ def collate_on_page(N_ppl):
     n_per_page = 4
     n_pages = int(np.ceil(N_ppl/n_per_page))
 
-    dx_w = 1.
-    dx_h = 1.
+    dx_w = 0.0000
+    dx_h = 0.0000
 
     page_width = 2 * width + dx_w
     page_height = n_per_page * (height + dx_h)
@@ -188,20 +196,20 @@ def collate_on_page(N_ppl):
                 ax.imshow(badge)
                 ax.axis('off')
 
-        # add gridlines
-        ax_grid = fig.add_axes([0, 0, 1, 1])
-        ax_grid.plot([0.5, 0.5], [0, 1], '-', color='0.9', lw=3)
-        for i in range(n_per_page+1):
-            if i==0:
-                y0 = 0.01
-            if i==n_per_page:
-                y0 = 0.999
-            else:
-                y0 = i * (h+dx_h)
-            ax_grid.plot([0, 1], [y0, y0], '-', color='0.9', lw=3)
-        ax_grid.set_xlim([0,1])
-        ax_grid.set_ylim([0,1])
-        ax_grid.axis('off')
+        # # add gridlines
+        # ax_grid = fig.add_axes([0, 0, 1, 1])
+        # ax_grid.plot([0.5, 0.5], [0, 1], '-', color='0.9', lw=3)
+        # for i in range(n_per_page+1):
+        #     if i==0:
+        #         y0 = 0.01
+        #     if i==n_per_page:
+        #         y0 = 0.999
+        #     else:
+        #         y0 = i * (h+dx_h)
+        #     ax_grid.plot([0, 1], [y0, y0], '-', color='0.9', lw=3)
+        # ax_grid.set_xlim([0,1])
+        # ax_grid.set_ylim([0,1])
+        # ax_grid.axis('off')
 
         fig.savefig('output/badge_page/badges_{0:03d}.pdf'.format(i_page))
         plt.close()
