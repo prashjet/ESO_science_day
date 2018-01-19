@@ -350,24 +350,16 @@ def print_personal_timetable(i_person, xl, plist, grp, outdir):
     outfile = outdir+'schedules/schedule_{0:03d}.txt'.format(i_person)
     f = open(outfile, 'w')
     f.write(xl.iloc[i_person]['Name'] + '\n')
-    f.write('Session 1: Room {i}\n'.format(i=room_s1))
-    for ic in range(N_chats_per_sesh):
-        idx = ((grp['chat']==ic) & (grp['session']==1) & (grp['room']==room_s1))
-        tab = []
-        for j in range(nt_s1):
-            check = np.isin([i_person], literal_eval(grp[idx]['group'].iloc[j]))
-            tab.append(check[0])
-        tab = grp[idx]['table'][tab].iloc[0]
-        f.write('\tchat {i}: table {j}\n'.format(i=ic, j=tab+1))
-    f.write('Session 2: Room {i}\n'.format(i=room_s2))
-    for ic in range(N_chats_per_sesh):
-        idx = ((grp['chat']==ic) & (grp['session']==2) & (grp['room']==room_s2))
-        tab = []
-        for j in range(nt_s2):
-            check = np.isin([i_person], literal_eval(grp[idx]['group'].iloc[j]))
-            tab.append(check[0])
-        tab = grp[idx]['table'][tab].iloc[0]
-        f.write('\tchat {i}: table {j}\n'.format(i=ic, j=tab+1))
+    for (sesh, room, ntables) in zip([1,2], [room_s1,room_s2], [nt_s1,nt_s2]):
+        f.write('Session {i}: Room {j}\n'.format(i=sesh, j=room))
+        for ic in range(N_chats_per_sesh):
+            idx = ((grp['chat']==ic) & (grp['session']==sesh) & (grp['room']==room))
+            tab = []
+            for j in range(ntables):
+                check = np.isin([i_person], literal_eval(grp[idx]['group'].iloc[j]))
+                tab.append(check[0])
+            tab = grp[idx]['table'][tab].iloc[0]
+            f.write('\tchat {i}: table {j}\n'.format(i=ic+1, j=tab+1))
     f.close()
 
     return 0
