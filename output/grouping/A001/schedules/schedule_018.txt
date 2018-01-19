@@ -1,0 +1,19 @@
+Dimitri Gadotti
+Session 1: Room 2
+	chat 1: table 2
+	chat 2: table 6
+	chat 3: table 6
+	chat 4: table 6
+	chat 5: table 2
+	chat 6: table 1
+	chat 7: table 2
+	chat 8: table 6
+Session 2: Room 2
+	chat 1: table 2
+	chat 2: table 6
+	chat 3: table 7
+	chat 4: table 2
+	chat 5: table 7
+	chat 6: table 6
+	chat 7: table 4
+	chat 8: table 1

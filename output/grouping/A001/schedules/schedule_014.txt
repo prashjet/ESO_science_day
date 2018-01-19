@@ -1,0 +1,19 @@
+Christian Hummel
+Session 1: Room 1
+	chat 1: table 10
+	chat 2: table 6
+	chat 3: table 2
+	chat 4: table 5
+	chat 5: table 9
+	chat 6: table 5
+	chat 7: table 9
+	chat 8: table 5
+Session 2: Room 2
+	chat 1: table 8
+	chat 2: table 1
+	chat 3: table 2
+	chat 4: table 3
+	chat 5: table 7
+	chat 6: table 7
+	chat 7: table 7
+	chat 8: table 2

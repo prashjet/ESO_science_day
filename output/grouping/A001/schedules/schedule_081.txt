@@ -1,0 +1,19 @@
+Vincenzo Mainieri
+Session 1: Room 1
+	chat 1: table 1
+	chat 2: table 2
+	chat 3: table 5
+	chat 4: table 9
+	chat 5: table 2
+	chat 6: table 2
+	chat 7: table 2
+	chat 8: table 3
+Session 2: Room 1
+	chat 1: table 3
+	chat 2: table 10
+	chat 3: table 7
+	chat 4: table 6
+	chat 5: table 9
+	chat 6: table 11
+	chat 7: table 4
+	chat 8: table 1

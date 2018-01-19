@@ -1,0 +1,19 @@
+Nando Patat
+Session 1: Room 1
+	chat 1: table 11
+	chat 2: table 10
+	chat 3: table 10
+	chat 4: table 9
+	chat 5: table 7
+	chat 6: table 12
+	chat 7: table 10
+	chat 8: table 9
+Session 2: Room 1
+	chat 1: table 5
+	chat 2: table 8
+	chat 3: table 8
+	chat 4: table 1
+	chat 5: table 11
+	chat 6: table 9
+	chat 7: table 7
+	chat 8: table 11

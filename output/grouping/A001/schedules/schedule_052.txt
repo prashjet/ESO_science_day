@@ -1,0 +1,19 @@
+Martino Romaniello
+Session 1: Room 2
+	chat 1: table 5
+	chat 2: table 3
+	chat 3: table 4
+	chat 4: table 8
+	chat 5: table 7
+	chat 6: table 5
+	chat 7: table 3
+	chat 8: table 5
+Session 2: Room 1
+	chat 1: table 9
+	chat 2: table 7
+	chat 3: table 9
+	chat 4: table 8
+	chat 5: table 8
+	chat 6: table 12
+	chat 7: table 2
+	chat 8: table 6

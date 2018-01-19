@@ -1,0 +1,19 @@
+Camilla Borre
+Session 1: Room 1
+	chat 1: table 12
+	chat 2: table 8
+	chat 3: table 3
+	chat 4: table 11
+	chat 5: table 6
+	chat 6: table 5
+	chat 7: table 8
+	chat 8: table 10
+Session 2: Room 1
+	chat 1: table 5
+	chat 2: table 3
+	chat 3: table 7
+	chat 4: table 5
+	chat 5: table 5
+	chat 6: table 4
+	chat 7: table 7
+	chat 8: table 9

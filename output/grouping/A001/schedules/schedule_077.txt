@@ -1,0 +1,19 @@
+Thomas Stanke
+Session 1: Room 2
+	chat 1: table 4
+	chat 2: table 2
+	chat 3: table 5
+	chat 4: table 8
+	chat 5: table 1
+	chat 6: table 6
+	chat 7: table 2
+	chat 8: table 7
+Session 2: Room 1
+	chat 1: table 3
+	chat 2: table 8
+	chat 3: table 3
+	chat 4: table 10
+	chat 5: table 11
+	chat 6: table 2
+	chat 7: table 6
+	chat 8: table 8
